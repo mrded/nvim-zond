@@ -43,8 +43,8 @@ use {
 
 ```lua
 require('zond').find_and_run({
-  title = 'Run a test',                         -- (optional) a modal title.
-  filter = '.spec.ts$',                         -- (optional) a regex filter the file search.
-  cmd = 'vsplit term://npx jest --runInBand %s' -- a command to be run. %s will be replaced with a file path.
+  title = 'Run a test',               -- a modal title.
+  filter = '.spec.ts$',               -- a regex filter the file search.
+  cmd = 'vsplit term://npx jest %s'   -- a command to be run. %s will be replaced with a file path.
 })
 ```
