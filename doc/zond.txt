@@ -1,0 +1,18 @@
+================================================================================
+INTRODUCTION                                                              *zond*
+
+Zond is a plugin for fuzzy finding a file and running a command on it.
+
+
+find_and_run({opts})                                       *zond.find_and_run()*
+    Search for file and run a commant on it.
+
+
+    Parameters: ~
+        {opts}                (table)         options to pass to the function
+
+    Options: ~
+        {title}               (string)        a modal title.
+        {filter}              (string)        a regex filter the file search.
+        {cmd}                 (string)        a command to be run. %s will be
+                                              replaced with a file path.
