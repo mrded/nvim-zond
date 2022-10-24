@@ -8,7 +8,7 @@ Find and run a test in a split.
 <img width="574" alt="image" src="https://user-images.githubusercontent.com/347098/197293449-01b6ffb0-e41c-4152-bec6-64699476d13b.png">
 
 ```viml
-nnoremap <C-t> <cmd>lua require('zond').find_and_run({ title = 'Run a test', filter = '.spec.ts$', cmd = 'vsplit term://npx jest --runInBand %s' })<cr>
+nnoremap <C-t> <cmd>lua require('zond').find_and_run({ title = 'Run a test', filter = '.spec.ts$', cmd = 'vsplit term://npx jest %s' })<cr>
 ```
 
 ### Required dependencies
@@ -43,8 +43,8 @@ use {
 
 ```lua
 require('zond').find_and_run({
-  title = 'Run a test',               -- a modal title.
-  filter = '.spec.ts$',               -- a regex filter the file search.
+  title = 'Run a test',               -- (optional) a modal title.
+  filter = '.spec.ts$',               -- (optional) a regex filter for the file search.
   cmd = 'vsplit term://npx jest %s'   -- a command to be run. %s will be replaced with a file path.
 })
 ```

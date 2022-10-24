@@ -1,31 +1,33 @@
-local function find_and_run(props)
-  local actions = require "telescope.actions"
-  local action_state = require "telescope.actions.state"
+local actions = require "telescope.actions"
+local action_state = require "telescope.actions.state"
 
-  local theme_opts = require('telescope.themes').get_dropdown({
-      prompt_title = props.title,
-      previewer = false 
-    })
-  
-  local opts = { 
-    search_file = props.filter,
-    attach_mappings = function (prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-        local cmd = string.format(props.cmd, selection[1])
+local function find_and_run(opts)
+  opts = opts or {}
 
-        vim.cmd(cmd)
-      end)
-      return true
-    end
-  }
+  local telescope_opts = require('telescope.themes').get_dropdown({
+    prompt_title = opts.title or "Zond",
+    previewer = false
+  })
 
-  local combined_opts = vim.tbl_extend("force", theme_opts, opts)
+  if opts.filter then
+    telescope_opts["search_file"] = opts.filter
+  end
 
-  require('telescope.builtin').find_files(combined_opts)
+  telescope_opts["attach_mappings"] = function(prompt_bufnr)
+    actions.select_default:replace(function()
+      actions.close(prompt_bufnr)
+
+      local selection = action_state.get_selected_entry()
+      local cmd = string.format(opts.cmd, selection[1])
+
+      vim.cmd(cmd)
+    end)
+
+    return true
+  end
+
+  require('telescope.builtin').find_files(telescope_opts)
 end
-
 
 return {
   find_and_run = find_and_run,

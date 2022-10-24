@@ -12,7 +12,7 @@ find_and_run({opts})                                       *zond.find_and_run()*
         {opts}                (table)         options to pass to the function
 
     Options: ~
-        {title}               (string)        a modal title.
+        {title}               (string)        a modal title. (default: 'Zond')
         {filter}              (string)        a regex filter the file search.
         {cmd}                 (string)        a command to be run. %s will be
                                               replaced with a file path.
